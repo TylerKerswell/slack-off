@@ -1,5 +1,5 @@
 import './App.css'
-
+import { UploadIcon } from './Links';
 function App() {
 
   return (
@@ -9,8 +9,12 @@ function App() {
       <div className='container'>
         <p>Get your lecture materials summarized, 
           consolidated and recieve a personal study plan</p>
+          
         <div id='uploadwrapper'>
-          <button className='upload'>Upload</button>
+          <a> 
+            <UploadIcon />
+            <button className='upload'>Upload</button>  
+          </a>
         </div>
       </div>
     </>
