@@ -156,6 +156,7 @@ export default function FileUploadSingle() {
             {showTableRes ?
                 <section>
                     <h1 className='pagetitle'>Slides Summary</h1>
+                    <p>{jsonData.bulletpoints}</p>
                     <div className='tabwrapper'>
                         <CenteredTabs 
                         summary={jsonData.bulletpoints}
