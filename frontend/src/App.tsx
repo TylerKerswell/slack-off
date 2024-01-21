@@ -4,7 +4,7 @@ import { UploadIcon } from './Links';
 import { ChangeEvent, useState } from 'react';
 // import { Loading } from './Loading';
 import { CenteredTabs } from './Tabs';
-import { PuffLoader } from "react-spinners";
+import { RingLoader } from "react-spinners";
 
 // import { Tab } from '@mui/base/Tab';
 // import { TabsList } from '@mui/base/TabsList';
@@ -29,7 +29,7 @@ function FileUploadSingle() {
     
     return (
         <div className="loading">
-            <PuffLoader color='#30CAFB' size='10rem' />
+            <RingLoader color='#30CAFB' size='10rem' />
         </div>
     )
 } 
