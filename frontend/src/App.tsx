@@ -114,9 +114,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section>
-        
-      </section>
+
       <section>
         <h1 className='pagetitle'>Slides Summary</h1>
         <div className='tabwrapper'>
@@ -124,14 +122,9 @@ function App() {
         </div>
         <div id='summarywrapper'>
           <div className='summary'>
-            <h2>Slides Summary</h2>
           </div>
         </div>
       </section>
-      <section>
-        
-      </section>
-
     </>
   )
 }
