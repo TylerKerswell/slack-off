@@ -227,3 +227,29 @@ input[type="file"] {
   background-color: rgb(231, 231, 231);
   border-radius: 2rem;
 }
+
+.probtext {
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: start;
+  text-align: left;
+}
+
+.tabs {
+  padding: 0rem;
+  margin: 0rem;
+}
+.tabs h3 {
+  font-size: 2rem;
+  margin: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tabsrim {
+  border-radius: 2rem;
+  background-image: linear-gradient(to right,
+    var(--skyblue),    
+    var(--deepblue));
+  padding: 0.2rem;
+  margin: 0rem;
+}

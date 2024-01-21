@@ -51,65 +51,75 @@ export function CenteredTabs(props: Json) {
     setValue(newValue);
   };
 
-//   render: function() {
+  //   render: function() {
 
-//     var styles = {
-//       default_tab:{
-//         color: Colors.grey500,
-//         backgroundColor: Colors.grey50,
-//         fontWeight: 400,
-//       },
-//       active_tab:{
-//         color: Colors.deepOrange700,
-//       }
-//     }
-  
-//     styles.tab = []
-//     styles.tab[0] = styles.default_tab;
-//     styles.tab[1] = styles.default_tab;
-//     styles.tab[2] = styles.default_tab;
-//     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
-//   }  
+  //     var styles = {
+  //       default_tab:{
+  //         color: Colors.grey500,
+  //         backgroundColor: Colors.grey50,
+  //         fontWeight: 400,
+  //       },
+  //       active_tab:{
+  //         color: Colors.deepOrange700,
+  //       }
+  //     }
+
+  //     styles.tab = []
+  //     styles.tab[0] = styles.default_tab;
+  //     styles.tab[1] = styles.default_tab;
+  //     styles.tab[2] = styles.default_tab;
+  //     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
+  //   }  
   // const jsonToText = (list:any) => {
   //   let text = '';
   //   for (let i = 0; i<list.length; i++) {
-      
+
   //   }
   //   return text;
   // }
-  
-  const ListOfBulletpoints =  Object.values(props.summary).map((d:any, index) => <span key={index} className="sumtext">{d}</span>)
-  const ListOfDefs =  Object.values(props.def).map((d:any, index) => <div className="deftext" key={index}><span>{d}</span></div>)
-  const ListOfProblems =  Object.values(props.problems).map((d:any, index) => <div className="probtext" key={index}><span>{d}</span></div>)
+
+  const ListOfBulletpoints = Object.values(props.summary).map((d: any, index) => <span key={index} className="sumtext">{d}</span>)
+  const ListOfDefs = Object.values(props.def).map((d: any, index) => <div className="deftext" key={index}><span>{d}</span></div>)
+  const ListOfProblems = Object.values(props.problems).map((d: any, index) => <div className="probtext" key={index}><span>{d}</span></div>)
 
   return (
+
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs className='tabs-container' value={value} onChange={handleChange} centered >
-          <Tab label="Summary" {...a11yProps(0)}/>
-          <Tab label="Explanation + Resources" {...a11yProps(1)}/>
-          <Tab label="Study Plan" {...a11yProps(2)}/>
+          <Tab label="Summary" {...a11yProps(0)} />
+          <Tab label="Explanation + Resources" {...a11yProps(1)} />
+          <Tab label="Study Plan" {...a11yProps(2)} />
         </Tabs>
       </Box>
+
       <SummaryPanel value={value} index={0}>
-        <div id='bulletwrapper'>
-          <h3>Summary</h3>
-          <>{ListOfBulletpoints}</>
+        <div className="tabsrim">
+          <div id='bulletwrapper'>
+            <h3>Summary</h3>
+            <>{ListOfBulletpoints}</>
+          </div>
         </div>
       </SummaryPanel>
+
       <SummaryPanel value={value} index={1}>
-        <div id='defwrapper'>
-          <h3>Explanation + Resources</h3>
-          <>{ListOfDefs}</>
+        <div className="tabsrim">
+          <div id='defwrapper'>
+            <h3>Explanation + Resources</h3>
+            <>{ListOfDefs}</>
+          </div>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={2}>
-        <div id="probwrapper">
-          <h3>Study Plan</h3>
-          <>{ListOfProblems}</>
+        <div className="tabsrim">
+          <div id="probwrapper">
+            <h3>Study Plan</h3>
+            <>{ListOfProblems}</>
+          </div>
         </div>
       </SummaryPanel>
 
     </div>
+
   );
 }
