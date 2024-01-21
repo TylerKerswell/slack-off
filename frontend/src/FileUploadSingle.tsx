@@ -11,9 +11,8 @@ export default function FileUploadSingle() {
         bulletpoints: any,
         definitions: any,
         problems:any,
-        study:any,
     }
-    const mt: Json = {bulletpoints:[],definitions:[],problems:[], study:[]}
+    const mt: Json = {bulletpoints:[],definitions:[],problems:[]}
     const [showButton, setShowButton] = useState(false);
     const [showUploadPhrase, setShowUploadPhrase] = useState(true);
     const [showLoading, setShowLoading] = useState(false);
@@ -50,7 +49,7 @@ export default function FileUploadSingle() {
         if (!file) {
             return;
         }
-        if (file.type != "application/pdf") {
+        if (file.type != "application/pdf" && file.type != "audio/wav") {
             return;
         }
         setShowLoading(true);
@@ -93,14 +92,13 @@ export default function FileUploadSingle() {
             </div>
             {showTableRes ?
                 <section>
-                    <h1 className='pagetitle'>Happy Skipping!</h1>
+                    <h1 className='pagetitle'>Slides Summary</h1>
                     
                     <div className='tabwrapper'>
                         <CenteredTabs 
                         summary={jsonData.bulletpoints}
                         def={jsonData.definitions}
-                        problems={jsonData.problems} 
-                        study={jsonData.study}/>
+                        problems={jsonData.problems} />
                     </div>
                 </section> : null}
         </>

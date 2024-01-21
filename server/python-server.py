@@ -26,7 +26,8 @@ def uploadPDF():
         except Exception as e:
             print(e)
             return Response("error reading file", status=422, mimetype="test/plain")
-    elif request.content_type == 'audio/mpeg':
+    elif request.content_type == 'audio/wav':
+        print("\n\nparsing audio...\n\n")
         try:
             bytesf = io.BytesIO(request.data)
             audio = sr.AudioFile(bytesf)
@@ -41,15 +42,17 @@ def uploadPDF():
     else:
         return Response("not a pdf file or an audio file", status = 422, mimetype="text/plain")
 
-    print("\n\nsummarising...\n\n`")
+    # summarize the text we got from any source
+    print("\n\nsummarizing text...\n\n")
     try:
         summary = summarise(lecture_texts, coherekey)
     except Exception as e:
         print(e)
         return Response("error summarising file", status=500, mimetype="test/plain")
     
+    print("\n\nfinished summarizing, generating...\n\n")
     # take the summary and create definitions and practice problems from them
-    print("\n\ngenerating...\n\n")
+    print("generating content...\n\n")
     try:
         definitions = define(summary, openkey)
         problems = generate_problems(summary,openkey)
@@ -58,7 +61,7 @@ def uploadPDF():
         print(e)
         return Response("error generating definitions/problems", status=500, mimetype="test/plain")
     
-    print("finished\n")
+    print("finished!")
     # split all the string into a list of points, then put that list into a dict
     # in order to send as a json object to the react app (andrew wanted it like this :/)
     summary_list = summary.splitlines()
@@ -90,7 +93,8 @@ def uploadPDF():
         if not stud.isspace():
             stud_dict[i] = stud
             i += 1
-    
+
+
     multi_dic = {}
 
     multi_dic["bulletpoints"] = summary_dict
