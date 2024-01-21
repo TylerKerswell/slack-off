@@ -44,13 +44,41 @@ export function CenteredTabs() {
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+//   render: function() {
+
+//     var styles = {
+//       default_tab:{
+//         color: Colors.grey500,
+//         backgroundColor: Colors.grey50,
+//         fontWeight: 400,
+//       },
+//       active_tab:{
+//         color: Colors.deepOrange700,
+//       }
+//     }
+  
+//     styles.tab = []
+//     styles.tab[0] = styles.default_tab;
+//     styles.tab[1] = styles.default_tab;
+//     styles.tab[2] = styles.default_tab;
+//     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
+//   }  
+
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        <Tabs value={value} onChange={handleChange} centered>
-          <Tab className='tab' label="Summary" {...a11yProps(0)}/>
-          <Tab className='tab' label="Explanation + Resources" />
-          <Tab className='tab' label="Study Plan" />
+        <Tabs className='tabs-container' 
+                value={value} 
+                onChange={handleChange} 
+                centered 
+                sx={{
+                    "& button": {borderRadius: 2}
+                    "& button:hover": { backgroundColor: '#004080'}
+                }}>
+          <Tab label="Summary" {...a11yProps(0)}/>
+          <Tab label="Explanation + Resources" />
+          <Tab label="Study Plan" />
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>

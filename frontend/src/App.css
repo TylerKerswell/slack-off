@@ -153,6 +153,27 @@ input[type="file"] {
   background-color: white;
 }
 
-.tab {
+/* ATTEMPTs AT STYLING TABS :(
+/* .tab {
   background-color: #30CAFB;
-}
+} */
+
+/* .tabs-container {
+  >div:first-child { // modifies the background color
+    background-color: #f6f6f6 !important;
+  }
+
+  >div:last-child { // changes the distance between tabs and content
+    margin-top: 10px;
+  }
+
+  .tab {
+    >div>div { // modifies the font size of the tab labels 
+      font-size: 10px;
+
+      svg { // modifies the color of SVG icons
+        fill: #626262 !important;
+      }
+    }
+  }
+} */
