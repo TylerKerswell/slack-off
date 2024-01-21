@@ -1,7 +1,5 @@
-import os
+import os, io, read
 from flask import Flask, send_from_directory, request, Response
-
-import read
 
 app = Flask(__name__, static_folder='../frontend/dist')
 
@@ -9,7 +7,14 @@ app = Flask(__name__, static_folder='../frontend/dist')
 def uploadPDF():
     if request.content_type != 'application/pdf':
         return Response("not a pdf file", status = 422, mimetype="text/plain")
-    pdfFile = request.data
+    usr = request.remote_addr
+    try:
+        pdf_stream = io.BytesIO(request.data)
+        lecture_texts = read.read_pdf(pdf_stream)
+    except:
+        return Response("error reading file", status=422, mimetype="test/plain")
+    return Response("good shit", status=202, mimetype="text/plain")
+
 
 
 # Serve React App
