@@ -1,12 +1,48 @@
 from summarise import summarise
 import os
 from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Make a call to Open AI API to define key terms in given text summary
+def define(text, key):
+	client = OpenAI(api_key=key)
+	print(key)
+
+	completion = client.chat.completions.create(
+	  model="gpt-3.5-turbo",
+	  messages=[
+	    {"role": "system", "content": "Define key terms in the following lecture slide summary:"},
+	    {"role": "user", "content": text},
+	  ]
+	)
+
+	return completion.choices[0].message
+
+def generate_problems(text, key):
+	client = OpenAI(api_key=key)
+
+	completion = client.chat.completions.create(
+	  model="gpt-3.5-turbo",
+	  messages=[
+	    {"role": "system", "content": "Generate a list of practice problems from the following lecture slide summary:"},
+	    {"role": "user", "content": text},
+	  ]
+	)
+
+	return completion.choices[0].message
 
 
 if __name__ == '__main__':
-	example_summary = """This week's lecture covers gravitational forces, specifically Newton's law of universal gravitation. The force of gravity between two objects is directly proportional to the mass of each object and inversely proportional to the square of the distance between them. Mathematically, this is expressed as GF(m1, m2) = G(the gravitational constant)/(the distance between the objects)^(2/3). An object moving in a circle experiences a centripetal force equal to F(mv) = (mv)^(2)/r. This must equal the gravitational force exerted by the Sun on the Earth. Using this, one can calculate that the Sun's mass is 1.99 x 1030 kg.  There are also reminders that Lab 1 is due next week and there is a practice version available after the due date, and that Pre-reading 2 is due Sunday and the first quiz is Wednesday covering material through today, with no homework next week.
-The Earth's velocity can be calculated using the formula c=2𝜋r, where c is the velocity, 𝜋 is the ratio of a circle's circumference to its diameter, and r is the radius of the orbit. Given that r=1.5×1011m for Earth's orbit around the Sun, the velocity is v=29,900 m/s. To calculate the Sun's mass, we can use the formula F=GMm/r^2, where F is the centripetal force, G is the gravitational constant, M is the mass of the Sun, m is the mass of the Earth, and r is the radius of the orbit. With the known values, we can calculate the mass of the Sun, which is 2×1030 kg. The Milky Way's mass can be calculated using the same formula, taking the velocity of stars at the edge of the Milky Way and their distance from the center into account.
-There are 15 forms of energy, including potential energy, which can be stored, such as chemical energy stored in food or batteries. Gravitational potential energy, specifically, occurs when an object is at a height where gravity has the potential to cause it to accelerate. The formula for gravitational potential energy on the surface of the Earth is given by U = mgh, where m is the mass of an object, h is its height above the Earth's surface and g is the acceleration due to the Earth's gravity, 9.8 m/s2. Planets, moons and satellites also have kinetic and gravitational potential energy, which is conserved for bound orbits. If a ball is thrown with a speed slightly less or slightly more than the speed for a circular orbit, its orbit becomes an ellipse.
-Geller et al.'s "Universe" provides an example on how to calculate the escape speed from a planet's surface. The formula for the escape speed is: 𝑣𝑣𝑐𝑐𝑑𝑑𝑐𝑐=2𝐺𝐺𝐺𝐺𝑟𝑟, where 𝑟𝑟 is the radius of the planet and 𝑐𝑐𝑑𝑑𝑑 is its mass. The book then asks what the Earth's radius would be, if the escape velocity from its surface was the speed of light. With the help of the given mass of the Earth, we can calculate the needed radius to be 9 mm. "Universe" also provides an exercise on how to calculate the distance between two objects in a binary system with the help of their masses and their radial velocity curves.
-Astronomers have made a fascinating discovery, estimating that a black hole with a mass of around 68 solar masses is lurking around 8,000 light-years away from Earth. The finding came after they noticed a visible star accompanied by a unseen companion, which led them to estimate the mass of the invisible object based on the motion of the visible star. This estimate pointed towards a black hole, due to its large mass with very little light emission. The pair are estimated to be around 1.5 astronomical units apart. Additionally, an astronaut in the International Space Station feels weightless not because they are beyond the pull of gravity, but because they are in freefall around the Earth along with the station.
+	example_summary = """Today's lecture covered the gravitational force and Newton's law of universal gravitation. The force of gravity is determined by the orbit of two objects and is defined by the equation F = G * m1 * m2 / r^2, where G is Newton's constant, m1 and m2 are the masses of the two objects, and r is the distance between them. In addition, the class weighed the Sun using the principle that an object moving in a circle experiences a centripetal force equal to F = m * r, which must equal the gravitational force exerted by the Sun on the Earth. The Sun's mass was then calculated to be 1.99 x 1030 kg.
+Calculate the velocity of the Earth, the mass of the Sun and the weight of the Milky Way. Relate the orbital period to the semi-major axes of the ellipses of their orbits. Differentiate between forms of energy, in particular kinetic energy. Kinetic energy is proportional to the mass of an object and to the square of its velocity.
+Energy can be stored as potential energy, such as chemical energy stored in food or batteries, or gravitational potential energy, which occurs when an object is at a height where gravity could cause it to accelerate. Gravitational potential energy on Earth is calculated with the formula U = mgh, where m is the object's mass, h is its height and g is the acceleration due to gravity, which is 9.8 m/s2. Planets, moons and satellites also have kinetic and gravitational potential energy, which is conserved for bound orbits, such as satellites orbiting Earth.
+A baseball thrown faster than the escape speed will leave the Earth and never return. This can be derived by setting KE+UE=0 to unbind the object. For the Earth, this escape speed is 11.2 km/s. If the Earth's mass was 6 x 1024kg, what would the Earth's radius have to be in order for the escape velocity from its surface to be equal to the speed of light, 300,000 km/s?
+Astronomers estimate that a companion object to a visible star is a black hole with a mass of around 68M☉. The object is around 1.5AU from the star, which is further than the distance between the Earth and the Sun. Astronauts in the International Space Station orbiting Earth 400km above its surface report feeling weightless, which is not due to being beyond the pull of gravity, but because they and the ISS are falling together around the Earth in a state of freefall.
 """
+
+	key_terms = define(example_summary, os.environ.get("OPENAI_API_KEY"))
+	print(key_terms)
+	problems = generate_problems(example_summary, os.environ.get("OPENAI_API_KEY"))
+

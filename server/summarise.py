@@ -1,6 +1,9 @@
 import cohere
 import os
 from read import read_pdf
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Produces a summary of the given text using provided API key and summarization parameters
 def summarise(text, key, length, extractiveness):
