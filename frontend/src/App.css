@@ -61,9 +61,15 @@ section h1 {
 
 }
 
+#space {
+  color:white;
+  margin: 0rem;
+}
+
 #navbar {
   display: flex;
   align-items: start;
+  margin: auto;
 }
 
 .icon {
