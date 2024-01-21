@@ -45,6 +45,7 @@ interface Json {
   summary: any,
   def: any,
   problems: any,
+  study: any,
 }
 
 export function CenteredTabs(props: Json) {
@@ -58,6 +59,7 @@ export function CenteredTabs(props: Json) {
   const ListOfBulletpoints = Object.values(props.summary).map((d: any, index) => <span key={index} className="sumtext">{d}</span>)
   const ListOfDefs = Object.values(props.def).map((d: any, index) => <div className="deftext" key={index}><span>{d}</span></div>)
   const ListOfProblems = Object.values(props.problems).map((d: any, index) => <div className="probtext" key={index}><span>{d}</span></div>)
+  const ListOfStudy = Object.values(props.study).map((d: any, index) => <div className="studtext" key={index}><span>{d}</span></div>)
 
   return (
 
@@ -82,7 +84,7 @@ export function CenteredTabs(props: Json) {
       <SummaryPanel value={value} index={1}>
         <div className="tabsrim">
           <div id='defwrapper'>
-            <h3>Explanation + Resources</h3>
+            <h3>Explanations and Definitions</h3>
             <>{ListOfDefs}</>
           </div>
         </div>
@@ -93,7 +95,6 @@ export function CenteredTabs(props: Json) {
             <h3>Study Plan + Resources</h3>
             <>{ListOfStudy}</>
             <h3>Practice Problems</h3>
-            <h3>Study Plan</h3>
             <>{ListOfProblems}</>
           </div>
         </div>
