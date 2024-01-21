@@ -34,7 +34,7 @@ def summarise(text: str, key: str) -> str:
             format='bullets',
             additional_command='read these lecture slides and give the best summary for a human to learn the material from this university-level lecture'
         )
-        summary_list.append(response.summary)
+        summary_list.append(response.summary.strip())
 
     # Join the summaries into one string
     summary = "\n".join(summary_list)

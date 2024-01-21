@@ -1,15 +1,17 @@
 import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
+from define import define, generate_problems
 
 app = Flask(__name__, static_folder='../frontend/dist')
-
-# MONGODB_URI = "mongodb+srv://public:yhj7nZX6EajcWNdZXs4VM2x2z2TUu4Uu2wrRoA31h244EkLnr02k3qe5R39ULZnk@cluster0.mongodb.net/slackoff"
-key = os.environ.get("COHERE_API_KEY")
+coherekey = os.environ.get("COHERE_API_KEY")
+openkey = os.environ.get("OPENAI_API_KEY")
 
 @app.route('/uploadPDF', methods=['POST'])
 def uploadPDF():
     print("call to uploadPDF")
+
+    # parse the pdf of slides and get the text in the slides
     if request.content_type != 'application/pdf':
         return Response("not a pdf file", status = 422, mimetype="text/plain")
     try:
@@ -24,14 +26,52 @@ def uploadPDF():
     # except:
     #     return Response("cant add file to mongoDB", status=500, mimetype="text/plain")
 
+    # grab the summary from the api
     try:
-        summary = summarise(lecture_texts, key)
+        summary = summarise(lecture_texts, coherekey)
     except Exception as e:
         print(e)
         return Response("error summarising file", status=500, mimetype="test/plain")
-    print(summary)
     
-    return Response(summary, status=202, mimetype="text/plain")
+    # get the other 2 fields
+    try:
+        definitions = define(summary, openkey)
+        problems = generate_problems(summary,openkey)
+    except Exception as e:
+        print(e)
+        return Response("error generating definitions/problems", status=500, mimetype="test/plain")
+    
+    # split all the string into a list of points, then put that list into a dict
+    # in order to send as a json object to the react app (andrew wanted it like this :/)
+    summary_list = summary.splitlines()
+    def_list = definitions.splitlines()
+    prob_list = problems.splitlines()
+    summary_dict = {}
+    def_dict = {}
+    prob_dict = {}
+    i = 0
+    for point in summary_list:
+        summary_dict[i] = point
+        i += 1
+    i = 0
+    for defi in def_list:
+        def_dict[i] = defi
+        i += 1
+    i = 0
+    for prob in prob_list:
+        prob_dict[i] = prob
+        i += 1
+    
+    multi_dic = {}
+
+    multi_dic["bulletpoints"] = summary_dict
+    multi_dic["definitions"] = def_dict
+    multi_dic["problems"] = prob_dict
+
+    with open("yeet.txt", "w") as file:
+        file.write(multi_dic)
+
+    return multi_dic
 
 
 # Serve React App
