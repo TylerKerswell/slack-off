@@ -1,4 +1,6 @@
 import PyPDF2
+
+# Returns a list of strings, each string is a page of the pdf, given pdf file path
 def read_pdf(file):
 	with open (file, 'rb') as pdf_file:
 		reader = PyPDF2.PdfReader(pdf_file, strict=False)
@@ -13,6 +15,5 @@ def read_pdf(file):
 
 if __name__ == '__main__':
 	extracted_text = read_pdf('test.pdf')
-	for text in extracted_text:
-		print(text)
+	print(extracted_text[0])
 
