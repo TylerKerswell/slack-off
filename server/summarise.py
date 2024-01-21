@@ -10,11 +10,17 @@ def summarise(text, key, length, extractiveness):
 
     client = cohere.Client(key)
 
-    # Divide the text into separate lists
-    section_length = len(text) // 4
-    text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length)]
+    # Divide the text into separate lists if it's longer than 1500 characters
+    text_sections = []
+    if len("".join(text)) > 1500:
+        section_length = len(text) // 4
+        text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length)]
+        print(len(text_sections))
+    else:
+        text_sections.append("".join(text))
+
     summary_list = []
-    print(len(text_sections))
+
     for section in text_sections:
         # Join each list into a string
         section = "".join(section)
