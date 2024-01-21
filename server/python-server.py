@@ -3,10 +3,9 @@ from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems
 import speech_recognition as sr
-from pydub import AudioSegment
 import json
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")

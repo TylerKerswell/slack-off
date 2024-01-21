@@ -44,4 +44,4 @@ def summarise(text: str, key: str) -> str:
 
 if __name__ == '__main__':
     api_key = os.environ.get("COHERE_API_KEY")
-    print(summarise(read_pdf('test.pdf'), api_key, "long", "medium"))
+    print(summarise(read_pdf('test.pdf'), api_key))
