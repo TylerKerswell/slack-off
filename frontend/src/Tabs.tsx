@@ -10,8 +10,8 @@ interface TabPanelProps {
   value: number;
 }
 
-function SummaryPanel(props: TabPanelProps){
-  const { children, value, index , ...other} = props;
+function SummaryPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
   return (
     <div
       role="tabpanel"
@@ -49,18 +49,34 @@ export function CenteredTabs() {
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs value={value} onChange={handleChange} centered>
-          <Tab className='tab' label="Summary"  {...a11yProps(0)}/>
+          <Tab className='tab' label="Summary"  {...a11yProps(0)} />
           <Tab className='tab' label="Explanation + Resources" />
           <Tab className='tab' label="Study Plan" />
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
-      <div>
-    <h3>Topic</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum 
-      officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-       aliquam suscipit nemo.</p>
-  </div>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
+        </div>
+      </SummaryPanel>
+      <SummaryPanel value={value} index={1}>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
+        </div>
+      </SummaryPanel>
+      <SummaryPanel value={value} index={2}>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
+        </div>
       </SummaryPanel>
     </div>
   );
