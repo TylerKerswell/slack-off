@@ -34,12 +34,12 @@ function FileUploadSingle() {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-
+      <label className='fileupload'>
+        <UploadIcon />
+        <input type="file" onChange={handleFileChange} />
+      </label>
       <div>{file && `${file.name} - ${file.type}`}</div>
-
-      <button onClick={handleUploadClick}>Upload</button>
-      <UploadIcon />
+      {/* <button onClick={handleUploadClick}>Upload</button> */}
     </div>
   );
 }
@@ -56,7 +56,6 @@ function App() {
         <div className='container'>
           <p>Get your lecture materials summarized, 
             consolidated and recieve a personal study plan</p>
-            
           <div id='uploadwrapper'>
             <FileUploadSingle />
             <span className='uploadphrase'>Upload your lecture materials</span>  

@@ -83,3 +83,7 @@ body, html {
   color: var(--deepblue);
   font-weight: 600;
 }
+
+input[type="file"] {
+  display: none;
+}
