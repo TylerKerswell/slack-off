@@ -65,9 +65,17 @@ function FileUploadSingle() {
         'content-length': `${file.size}`
       },
     })
-      .then((res) => console.log(res))
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
+      .then(function (res: Response) {
+        console.log(res);
+        return res.json();
+      })
+      .then(function (json) {
+        console.log(json);
+      })
+      .catch(function (err) {
+        console.log("big error\n");
+        console.log(err)
+      });
   };
   return (
     <>
