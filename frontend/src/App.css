@@ -253,3 +253,10 @@ input[type="file"] {
   padding: 0.2rem;
   margin: 0rem;
 }
+
+.studtext {
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: start;
+  text-align: left;
+}

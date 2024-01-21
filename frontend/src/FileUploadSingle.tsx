@@ -11,8 +11,9 @@ export default function FileUploadSingle() {
         bulletpoints: any,
         definitions: any,
         problems:any,
+        study:any,
     }
-    const mt: Json = {bulletpoints:[],definitions:[],problems:[]}
+    const mt: Json = {bulletpoints:[],definitions:[],problems:[], study:[]}
     const [showButton, setShowButton] = useState(false);
     const [showUploadPhrase, setShowUploadPhrase] = useState(true);
     const [showLoading, setShowLoading] = useState(false);
@@ -92,13 +93,14 @@ export default function FileUploadSingle() {
             </div>
             {showTableRes ?
                 <section>
-                    <h1 className='pagetitle'>Slides Summary</h1>
+                    <h1 className='pagetitle'>Happy Skipping!</h1>
                     
                     <div className='tabwrapper'>
                         <CenteredTabs 
                         summary={jsonData.bulletpoints}
                         def={jsonData.definitions}
-                        problems={jsonData.problems} />
+                        problems={jsonData.problems} 
+                        study={jsonData.study}/>
                     </div>
                 </section> : null}
         </>

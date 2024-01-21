@@ -2,7 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  height: 100vh;
   color-scheme: light;
   color: dark;
   background-color: white;
@@ -15,6 +15,10 @@
   --skyblue: #30CAFB;
   --deepblue: #004080;
   --lightblue: #DEF1FF;
+  background-attachment: fixed;
+  background-image: linear-gradient(
+  white,
+  var(--lightblue));
 }
 body {
   height: 100%;
