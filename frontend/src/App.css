@@ -8,6 +8,12 @@
   --deepblue: #004080;
   --lightblue: #DEF1FF;
 }
+body, html {
+  margin-left:4%;
+  margin-right:11%;
+  margin-bottom:1%;
+  margin-top:1%;
+}
 .pagetitle {
     background-image: linear-gradient(to right,
     var(--skyblue),    
@@ -56,6 +62,12 @@
 .icon {
   height: 10rem;
   color: var(--deepblue);
+}
+
+.icon:hover {
+  height: 10rem;
+  color: var(--skyblue);
+  transition: 0.5s;
 }
 
 #uploadwrapper {
