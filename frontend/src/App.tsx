@@ -2,6 +2,7 @@ import './App.css'
 import { UploadIcon } from './Links';
 
 import { ChangeEvent, useState } from 'react';
+import { Loading } from './Loading';
 
 // import { Tab } from '@mui/base/Tab';
 // import { TabsList } from '@mui/base/TabsList';
@@ -19,6 +20,7 @@ function FileUploadSingle() {
     }
   };
   
+
   const UploadButton = () => {
     return (
       <button onClick={handleUploadClick}>Generate Study Tools</button>
@@ -63,7 +65,6 @@ function FileUploadSingle() {
 
 function App() {
 
-
   return (
     <>
     
@@ -73,7 +74,7 @@ function App() {
       <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
       <div className='containerrim'>
         <div className='container'>
-          <p>Get your lecture materials summarizedand 
+          <p>Get your lecture materials summarized and 
             consolidated, with a personal study plan:</p>
           <div id='uploadwrapper'>
             <FileUploadSingle />
@@ -89,6 +90,11 @@ function App() {
         <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
         <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
       </div> */}
+      </section>
+      <section>
+        <div className='loaderwrapper'>
+          <Loading />
+        </div>
       </section>
     </>
   )
