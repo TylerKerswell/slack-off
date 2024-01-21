@@ -63,6 +63,7 @@ function FileUploadSingle() {
 
 function App() {
 
+
   return (
     <>
     
@@ -72,8 +73,8 @@ function App() {
       <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
       <div className='containerrim'>
         <div className='container'>
-          <p>Get your lecture materials summarized, 
-            consolidated and recieve a personal study plan</p>
+          <p>Get your lecture materials summarizedand 
+            consolidated, with a personal study plan:</p>
           <div id='uploadwrapper'>
             <FileUploadSingle />
             <span className='uploadphrase'>Upload your lecture materials</span>  
