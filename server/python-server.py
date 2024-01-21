@@ -2,38 +2,46 @@ import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems
+import speech_recognition as sr
+from pydub.playback import play
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")
 openkey = os.environ.get("OPENAI_API_KEY")
 
-@app.route('/uploadPDF', methods=['POST'])
+@app.route('/uploadFile', methods=['POST'])
 def uploadPDF():
-    print("call to uploadPDF")
+    print("\n\n\ncall to uploadFile\n\n\n")
 
-    # parse the pdf of slides and get the text in the slides
-    if request.content_type != 'application/pdf':
-        return Response("not a pdf file", status = 422, mimetype="text/plain")
-    try:
-        pdf_stream = io.BytesIO(request.data)
-        lecture_texts = read.read_pdf(pdf_stream)
-    except:
-        return Response("error reading file", status=422, mimetype="test/plain")
+    # parse the pdf or audio file and get the text from in
+    if request.content_type == 'application/pdf':
+        try:
+            pdf_stream = io.BytesIO(request.data)
+            lecture_texts = read.read_pdf(pdf_stream)
+        except Exception as e:
+            print(e)
+            return Response("error reading file", status=422, mimetype="test/plain")
+    elif request.content_type == 'audio/mpeg':
+        try:
+            rec = sr.Recognizer()
+            sr.AudioFile(request.data)
+            audio = rec.record(request.data, duration=3600)
+            lecture_texts = rec.recognize_bing(audio)
+            print(lecture_texts)
+        except Exception as e:
+            print(e)
+            return Response("error reading audio file", status=422, mimetype="text/plain")
+    else:
+        return Response("not a pdf file or an audio file", status = 422, mimetype="text/plain")
+
     
-    # try:
-    #     binary_data = request.data.decode('utf-8')
-    #     database.files.insert_one({'_id': usr, 'data': binary_data})
-    # except:
-    #     return Response("cant add file to mongoDB", status=500, mimetype="text/plain")
-
-    # grab the summary from the api
     try:
         summary = summarise(lecture_texts, coherekey)
     except Exception as e:
         print(e)
         return Response("error summarising file", status=500, mimetype="test/plain")
     
-    # get the other 2 fields
+    # take the summary and create definitions and practice problems from them
     try:
         definitions = define(summary, openkey)
         problems = generate_problems(summary,openkey)
@@ -68,9 +76,6 @@ def uploadPDF():
     multi_dic["definitions"] = def_dict
     multi_dic["problems"] = prob_dict
 
-    with open("yeet.txt", "w") as file:
-        file.write(multi_dic)
-
     return multi_dic
 
 
@@ -85,12 +90,4 @@ def serve(path):
 
 
 if __name__ == '__main__':
-    # try:
-    #     client = pymongo.MongoClient(MONGODB_URI)
-    #     database = client["pdfs"]
-    # except Exception as e:
-    #     print(e)
-    #     print("error connecting to the database")
-    #     os._exit(1)
-
     app.run(use_reloader=True, port=5525, threaded=True, host="0.0.0.0")
