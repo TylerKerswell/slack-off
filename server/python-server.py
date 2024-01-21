@@ -23,24 +23,20 @@ def uploadPDF():
             return Response("error reading file", status=422, mimetype="test/plain")
     elif request.content_type == 'audio/mpeg':
         try:
-            rec = sr.Recognizer()
+            # rec = sr.Recognizer()
             # audio = AudioSegment.from_file(io.BytesIO(request.data), format="mp3")
-            # print("here")
-            # wav_data = audio.raw_data
-            # print("there")
-            # wav_file = AudioSegment(wav_data, frame_rate=audio.frame_rate, sample_width=audio.sample_width, channels=audio.channels)
-            # print("everywhere")
-            # audio_source = sr.AudioData(wav_file, wav_file.frame_rate, wav_file.sample_width)
-            audio = AudioSegment.from_file(io.BytesIO(request.data), format="mp3")
 
-            # Convert AudioSegment to AudioData
-            audio_data = sr.AudioData(audio.raw_data, audio.frame_rate, audio.sample_width)
+            # # Convert AudioSegment to AudioData
+            # audio_data = sr.AudioData(audio.raw_data, audio.frame_rate, audio.sample_width)
 
-            print("yeehaw")
-            audio = rec.record(audio_data, duration=3600)
-            print("yeboi")
-            lecture_texts = rec.recognize_bing(audio)
-            print(lecture_texts)
+
+            # audio_da = rec.record()
+            # print("yeehaw")
+            # audio = rec.record(audio_da, duration=3600)
+            # print("yeboi")
+            # lecture_texts = rec.recognize_bing(audio)
+            # print(lecture_texts)
+            pass
         except Exception as e:
             print(e)
             return Response("error reading audio file", status=421, mimetype="text/plain")
