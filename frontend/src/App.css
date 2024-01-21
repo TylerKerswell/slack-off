@@ -42,14 +42,17 @@ section h1 {
 .containerrim .container {
   border-radius: 0.8rem;
   margin: 0rem;
-  padding: 2rem;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   background-color: white;
 }
 
 .container p {
   margin: 0rem;
   padding: 1rem;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
 }
 
 #name {
@@ -75,7 +78,7 @@ section h1 {
 }
 
 #uploadwrapper {
-  padding: 1rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   background-color: var(--lightgrey);
@@ -109,6 +112,15 @@ input[type="file"] {
   padding: 2rem;
 }
 
-.summarycontainer {
-  color: var(--lightgrey);
+.summary {
+  color: black;
+}
+
+#summarycontainer {
+  color: var(--lightgrey)
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightgrey);
+  border-radius: 1rem;
 }

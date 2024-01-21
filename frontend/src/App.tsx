@@ -114,8 +114,10 @@ function App() {
         <div className='tabwrapper'>
           <CenteredTabs />
         </div>
-        <div className='container'>
-          <h2>Slides Summary</h2>
+        <div id='summarywrapper'>
+          <div className='summary'>
+            <h2>Slides Summary</h2>
+          </div>
         </div>
       </section>
       <section>
