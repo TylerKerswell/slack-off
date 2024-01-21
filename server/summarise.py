@@ -16,7 +16,7 @@ def summarise(text: str, key: str) -> str:
     text_sections = []
     if len("".join(text)) > 1500:
         section_length = len(text) // NUM_SECTIONS
-        text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length + section_length % NUM_SECTIONS)]
+        text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length + (section_length % NUM_SECTIONS) + 1)]
     else:
         text_sections.append("".join(text))
 
