@@ -14,11 +14,11 @@ def summarise(text: str, key: str) -> str:
 
     # Divide the text into separate lists if it's longer than 1500 characters
     text_sections = []
-    if len(text) > 1500:
+    if len("".join(text)) > 1500:
         section_length = len(text) // NUM_SECTIONS
         text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length + (section_length % NUM_SECTIONS) + 1)]
     else:
-        text_sections.append(text)
+        text_sections.append("".join(text))
 
     summary_list = []
 
@@ -44,4 +44,4 @@ def summarise(text: str, key: str) -> str:
 
 if __name__ == '__main__':
     api_key = os.environ.get("COHERE_API_KEY")
-    print(summarise(read_pdf('test.pdf'), api_key))
+    print(summarise(read_pdf('test.pdf'), api_key, "long", "medium"))
