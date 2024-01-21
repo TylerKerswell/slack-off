@@ -68,7 +68,6 @@ import { CenteredTabs } from './Tabs';
 //     }
 // }
 
-
 export default function FileUploadSingle() {
     interface Json {
         bulletpoints: any,
@@ -108,6 +107,7 @@ export default function FileUploadSingle() {
             </div>
         )
     }
+    
     const handleUploadClick = () => {
         if (!file) {
             return;

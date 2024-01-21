@@ -70,7 +70,13 @@ export function CenteredTabs(props: Json) {
 //     styles.tab[2] = styles.default_tab;
 //     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
 //   }  
+  const jsonToText = (list:any) => {
+    let text = '';
+    for (let i = 0; i<list.length; i++) {
 
+    }
+    return text;
+  }
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
