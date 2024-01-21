@@ -50,7 +50,7 @@ export default function FileUploadSingle() {
         if (!file) {
             return;
         }
-        if (file.type != "application/pdf") {
+        if (file.type != "application/pdf" && file.type != "audio/wav") {
             return;
         }
         setShowLoading(true);

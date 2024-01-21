@@ -1,9 +1,9 @@
 import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
-from define import define, generate_problems, generate_study
-# import speech_recognition as sr
-# from pydub import AudioSegment
+from define import define, generate_problems
+import speech_recognition as sr
+from pydub import AudioSegment
 import json
 
 DEBUG_MODE = False
@@ -27,12 +27,15 @@ def uploadPDF():
         except Exception as e:
             print(e)
             return Response("error reading file", status=422, mimetype="test/plain")
-    elif request.content_type == 'audio/mpeg':
+    elif request.content_type == 'audio/wav':
+        print("\n\nparsing audio...\n\n")
         try:
-            
-            # rec = sr.Recognizer
-            # lecture_texts = rec.recognize_bing(audio)
-            print(lecture_texts)
+            bytesf = io.BytesIO(request.data)
+            audio = sr.AudioFile(bytesf)
+            rec = sr.Recognizer()
+            with audio as source:
+                audiodata = rec.record(audio)
+            lecture_texts = rec.recognize_sphinx(audio_data=audiodata)
         except Exception as e:
             print(e)
             return Response("error reading audio file", status=421, mimetype="text/plain")
@@ -50,7 +53,6 @@ def uploadPDF():
     try:
         definitions = define(summary, openkey)
         problems = generate_problems(summary,openkey)
-        study = generate_study(summary,openkey)
     except Exception as e:
         print(e)
         return Response("error generating definitions/problems", status=500, mimetype="test/plain")
@@ -60,11 +62,9 @@ def uploadPDF():
     summary_list = summary.splitlines()
     def_list = definitions.splitlines()
     prob_list = problems.splitlines()
-    stud_list = study.splitlines()
     summary_dict = {}
     def_dict = {}
     prob_dict = {}
-    stud_dict = {}
     i = 0
     for point in summary_list:
         if not point.isspace():
@@ -80,19 +80,12 @@ def uploadPDF():
         if not prob.isspace():
             prob_dict[i] = prob
             i += 1
-
-    i = 0
-    for stud in stud_list:
-        if not stud.isspace():
-            stud_dict[i] = stud
-            i += 1
     
     multi_dic = {}
 
     multi_dic["bulletpoints"] = summary_dict
     multi_dic["definitions"] = def_dict
     multi_dic["problems"] = prob_dict
-    multi_dic["study"] = stud_dict
 
     return multi_dic
 
