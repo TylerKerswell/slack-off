@@ -97,3 +97,9 @@ input[type="file"] {
   margin-top: 1rem;
   background-color: var(--deepblue);
 }
+
+.loaderwrapper {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
