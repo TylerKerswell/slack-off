@@ -78,9 +78,9 @@ export function CenteredTabs(props: Json) {
   //   return text;
   // }
   
-  const ListOfBulletpoints =  Object.values(props.summary).map((d:any, index) => <div key={index}><span>{d}</span></div>)
-  const ListOfDefs =  Object.values(props.def).map((d:any, index) => <div key={index}><span>{d}</span></div>)
-  const ListOfProblems =  Object.values(props.problems).map((d:any, index) => <div key={index}><span>{d}</span></div>)
+  const ListOfBulletpoints =  Object.values(props.summary).map((d:any, index) => <span key={index} className="sumtext">{d}</span>)
+  const ListOfDefs =  Object.values(props.def).map((d:any, index) => <div className="deftext" key={index}><span>{d}</span></div>)
+  const ListOfProblems =  Object.values(props.problems).map((d:any, index) => <div className="probtext" key={index}><span>{d}</span></div>)
 
   return (
     <div className='tabs'>
@@ -92,19 +92,19 @@ export function CenteredTabs(props: Json) {
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
-        <div>
+        <div id='bulletwrapper'>
           <h3>Summary</h3>
           <>{ListOfBulletpoints}</>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={1}>
-        <div>
+        <div id='defwrapper'>
           <h3>Explanation + Resources</h3>
           <>{ListOfDefs}</>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={2}>
-        <div>
+        <div id="probwrapper">
           <h3>Study Plan</h3>
           <>{ListOfProblems}</>
         </div>

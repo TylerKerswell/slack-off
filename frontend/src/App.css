@@ -42,8 +42,8 @@ section h1 {
 .containerrim .container {
   border-radius: 0.8rem;
   margin: 0rem;
-  padding-right: 8rem;
-  padding-left: 8rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
   background-color: white;
@@ -85,6 +85,9 @@ section h1 {
 
 #uploadwrapper {
   padding: 3rem;
+  
+  margin-left: 4rem;
+  margin-right: 4rem;
   display: flex;
   flex-direction: column;
   background-color: var(--lightgrey);
@@ -177,3 +180,50 @@ input[type="file"] {
     }
   }
 } */
+
+.sumtext {
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: start;
+  text-align: left;
+}
+
+#bulletwrapper {
+  padding: 2rem;
+  margin: 0rem;
+  display: flex;
+  flex-direction: column; 
+  line-height: 1.3rem;
+  align-items: start;
+  background-color: rgb(231, 231, 231);
+  border-radius: 2rem;
+}
+
+#defwrapper {
+  padding: 2rem;
+  margin: 0rem;
+  display: flex;
+  flex-direction: column; 
+  line-height: 1.3rem;
+  align-items: start;
+  background-color: rgb(231, 231, 231);
+  border-radius: 2rem;
+}
+
+.deftext {
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: start;
+  text-align: left;
+}
+
+#probwrapper {
+  padding: 2rem;
+  margin: 0rem;
+  display: flex;
+  flex-direction: column; 
+  line-height: 1.3rem;
+  align-items: start;
+  background-color: rgb(231, 231, 231);
+  border-radius: 2rem;
+}
