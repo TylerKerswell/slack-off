@@ -7,6 +7,7 @@
   --skyblue: #30CAFB;
   --deepblue: #004080;
   --lightblue: #DEF1FF;
+  
 }
 body, html {
   margin-left:4%;
@@ -27,7 +28,7 @@ section h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+  white-space: wrap;
 }
 .containerrim {
   border-radius: 1rem;
@@ -90,4 +91,9 @@ section h1 {
 
 input[type="file"] {
   display: none;
+}
+
+.uploaddiv button {
+  margin-top: 1rem;
+  background-color: var(--deepblue);
 }
