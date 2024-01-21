@@ -9,6 +9,7 @@ key = os.environ.get("COHERE_API_KEY")
 
 @app.route('/uploadPDF', methods=['POST'])
 def uploadPDF():
+    print("call to uploadPDF")
     if request.content_type != 'application/pdf':
         return Response("not a pdf file", status = 422, mimetype="text/plain")
     try:
@@ -24,10 +25,11 @@ def uploadPDF():
     #     return Response("cant add file to mongoDB", status=500, mimetype="text/plain")
 
     try:
-        summary = summarise(lecture_texts, key, "long", "medium")
+        summary = summarise(lecture_texts, key)
     except Exception as e:
         print(e)
         return Response("error summarising file", status=500, mimetype="test/plain")
+    print(summary)
     
     return Response(summary, status=202, mimetype="text/plain")
 

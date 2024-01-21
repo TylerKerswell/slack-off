@@ -5,17 +5,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+NUM_SECTIONS = 4
+
 # Produces a summary of the given text using provided API key and summarization parameters
-def summarise(text, key, length, extractiveness):
+def summarise(text: str, key: str) -> str:
 
     client = cohere.Client(key)
 
     # Divide the text into separate lists if it's longer than 1500 characters
     text_sections = []
     if len("".join(text)) > 1500:
-        section_length = len(text) // 4
-        text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length)]
-        print(len(text_sections))
+        section_length = len(text) // NUM_SECTIONS
+        text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length + section_length % NUM_SECTIONS)]
     else:
         text_sections.append("".join(text))
 
@@ -28,8 +29,10 @@ def summarise(text, key, length, extractiveness):
         response = client.summarize(
             text=section,
             model='command',
-            length=length,
-            extractiveness=extractiveness
+            length='long',
+            extractiveness='low',
+            format='bullets',
+            additional_command='read these lecture slides and give the best summary for a human to learn the material from this university-level lecture'
         )
         summary_list.append(response.summary)
 
