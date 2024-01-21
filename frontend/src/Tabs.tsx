@@ -90,13 +90,10 @@ export function CenteredTabs(props: Json) {
       <SummaryPanel value={value} index={2}>
         <div className="tabsrim">
           <div id="probwrapper">
-<<<<<<< HEAD
             <h3>Study Plan + Resources</h3>
             <>{ListOfStudy}</>
             <h3>Practice Problems</h3>
-=======
             <h3>Study Plan</h3>
->>>>>>> parent of 9794d0c... big un
             <>{ListOfProblems}</>
           </div>
         </div>

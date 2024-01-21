@@ -1,8 +1,9 @@
 import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
-from define import define, generate_problems
+from define import define, generate_problems, generate_study
 import speech_recognition as sr
+
 import json
 
 DEBUG_MODE = False
@@ -37,7 +38,7 @@ def uploadPDF():
                 rec = sr.Recognizer()
                 with audio as source:
                     audiodata = rec.record(audio)
-                lecture_texts = rec.recognize_whisper(audio_data=audiodata, language='english')
+                lecture_texts = rec.recognize_sphinx(audio_data=audiodata)
                 print(lecture_texts)
         except Exception as e:
             print(e)
@@ -58,6 +59,7 @@ def uploadPDF():
     try:
         definitions = define(summary, openkey)
         problems = generate_problems(summary,openkey)
+        study = generate_study(summary,openkey)
     except Exception as e:
         print(e)
         return Response("error generating definitions/problems", status=500, mimetype="test/plain")
@@ -68,9 +70,11 @@ def uploadPDF():
     summary_list = summary.splitlines()
     def_list = definitions.splitlines()
     prob_list = problems.splitlines()
+    stud_list = study.splitlines()
     summary_dict = {}
     def_dict = {}
     prob_dict = {}
+    stud_dict = {}
     i = 0
     for point in summary_list:
         if not point.isspace():
@@ -86,12 +90,20 @@ def uploadPDF():
         if not prob.isspace():
             prob_dict[i] = prob
             i += 1
-    
+
+    i = 0
+    for stud in stud_list:
+        if not stud.isspace():
+            stud_dict[i] = stud
+            i += 1
+
+
     multi_dic = {}
 
     multi_dic["bulletpoints"] = summary_dict
     multi_dic["definitions"] = def_dict
     multi_dic["problems"] = prob_dict
+    multi_dic["study"] = stud_dict
 
     return multi_dic
 
