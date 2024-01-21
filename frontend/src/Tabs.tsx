@@ -38,7 +38,13 @@ function a11yProps(index: number) {
   };
 }
 
-export function CenteredTabs() {
+interface Json {
+  summary: any,
+  def: any,
+  problems: any,
+}
+
+export function CenteredTabs(props: Json) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
@@ -70,32 +76,26 @@ export function CenteredTabs() {
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs className='tabs-container' value={value} onChange={handleChange} centered >
           <Tab label="Summary" {...a11yProps(0)}/>
-          <Tab label="Explanation + Resources" />
-          <Tab label="Study Plan" />
+          <Tab label="Explanation + Resources" {...a11yProps(1)}/>
+          <Tab label="Study Plan" {...a11yProps(2)}/>
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
         <div>
-          <h3>Topic</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
-            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-            aliquam suscipit nemo.</p>
+          <h3>Summary</h3>
+          <p>{props.summary}</p>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={1}>
         <div>
-          <h3>Topic</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
-            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-            aliquam suscipit nemo.</p>
+          <h3>Explanation + Resources</h3>
+          <p>{props.def}</p>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={2}>
         <div>
-          <h3>Topic</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
-            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-            aliquam suscipit nemo.</p>
+          <h3>Study Plan</h3>
+          <p>{props.problems}</p>
         </div>
       </SummaryPanel>
 
