@@ -44,23 +44,24 @@ export function CenteredTabs() {
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs value={value} onChange={handleChange} centered>
-          <Tab className='tab' label="Summary"  {...a11yProps(0)}/>
+          <Tab className='tab' label="Summary" {...a11yProps(0)}/>
           <Tab className='tab' label="Explanation + Resources" />
           <Tab className='tab' label="Study Plan" />
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
-      <div>
-    <h3>Topic</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum 
-      officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-       aliquam suscipit nemo.</p>
-  </div>
+        <div className='summaryrim'>
+            <div className='summary'>
+                <h3>Topic</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum 
+                officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+                aliquam suscipit nemo.</p>
+            </div>
+        </div>
       </SummaryPanel>
     </div>
   );

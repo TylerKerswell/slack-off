@@ -107,7 +107,7 @@ function App() {
         <div className='containerrim'>
           <div className='container'>
             <p>Get your lecture materials summarized and
-              consolidated, with a personal study plan:</p>
+              consolidated, with a personal study plan</p>
             <div id='uploadwrapper'>
               <FileUploadSingle />
             </div>
@@ -119,10 +119,6 @@ function App() {
         <h1 className='pagetitle'>Slides Summary</h1>
         <div className='tabwrapper'>
           <CenteredTabs />
-        </div>
-        <div id='summarywrapper'>
-          <div className='summary'>
-          </div>
         </div>
       </section>
     </>
