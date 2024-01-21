@@ -19,7 +19,7 @@ import { RingLoader } from "react-spinners";
 
 function FileUploadSingle() {
   const [showButton, setShowButton] = useState(false);
-
+  const [showUploadPhrase, setShowUploadPhrase] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
 
   const [file, setFile] = useState<File>();
@@ -27,6 +27,7 @@ function FileUploadSingle() {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setShowButton(true);
+      setShowUploadPhrase(false);
       setFile(e.target.files[0]);
     }
   };
@@ -34,7 +35,7 @@ function FileUploadSingle() {
 
     return (
       <div className="loading">
-        <RingLoader color='#30CAFB' size='10rem' />
+        <RingLoader color='#30CAFB' size='3rem' />
       </div>
     )
   }
@@ -42,9 +43,10 @@ function FileUploadSingle() {
     return (
       <div>
         <button onClick={handleUploadClick}>Generate Study Tools</button>
-        {showLoading ? <Loading /> : null}
+        <div className='loaderwrapper'>
+          {showLoading ? <Loading /> : null}
+        </div>
       </div>
-
     )
   }
   const handleUploadClick = () => {
@@ -68,14 +70,18 @@ function FileUploadSingle() {
       .catch((err) => console.error(err));
   };
   return (
-    <div className='uploaddiv'>
-      <label className='fileupload'>
-        <UploadIcon />
-        <input type="file" onChange={handleFileChange} />
-      </label>
-      <div>{file && `${file.name} - ${file.type}`}</div>
-      {showButton ? <UploadButton /> : null}
-    </div>
+    <>
+      
+      <div className='uploaddiv'>
+        <label className='fileupload'>
+          <UploadIcon />
+          <input type="file" onChange={handleFileChange} />
+        </label>
+        <div>{file && `${file.name} - ${file.type}`}</div>
+        {showButton ? <UploadButton /> : null}
+      </div>
+      { showUploadPhrase ? <span className='uploadphrase'>Upload your lecture materials</span> : null}
+    </>
   );
 }
 
@@ -96,14 +102,12 @@ function App() {
               consolidated, with a personal study plan:</p>
             <div id='uploadwrapper'>
               <FileUploadSingle />
-              <span className='uploadphrase'>Upload your lecture materials</span>
             </div>
           </div>
         </div>
       </section>
       <section>
-        <div className='loaderwrapper'>
-        </div>
+        
       </section>
       <section>
         <h1 className='pagetitle'>Slides Summary</h1>

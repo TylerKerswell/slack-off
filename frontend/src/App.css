@@ -100,8 +100,11 @@ input[type="file"] {
 
 .loaderwrapper {
   display: flex;
+  padding: 0rem;
   justify-content: center;
   margin: auto;
 }
 
-
+.loaderwrapper .loading {
+  padding: 2rem;
+}
