@@ -10,8 +10,8 @@ interface TabPanelProps {
   value: number;
 }
 
-function SummaryPanel(props: TabPanelProps){
-  const { children, value, index , ...other} = props;
+function SummaryPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
   return (
     <div
       role="tabpanel"
@@ -68,6 +68,7 @@ export function CenteredTabs() {
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+<<<<<<< HEAD
         <Tabs className='tabs-container' 
                 value={value} 
                 onChange={handleChange} 
@@ -79,18 +80,39 @@ export function CenteredTabs() {
           <Tab label="Summary" {...a11yProps(0)}/>
           <Tab label="Explanation + Resources" />
           <Tab label="Study Plan" />
+=======
+        <Tabs value={value} onChange={handleChange} centered>
+          <Tab className='tab' label="Summary"  {...a11yProps(0)} />
+          <Tab className='tab' label="Explanation + Resources" {...a11yProps(1)}/>
+          <Tab className='tab' label="Study Plan" {...a11yProps(2)}/>
+>>>>>>> 48b685b554f533b22d42f49cd9911a7def724506
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
-        <div className='summaryrim'>
-            <div className='summary'>
-                <h3>Topic</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum 
-                officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
-                aliquam suscipit nemo.</p>
-            </div>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
         </div>
       </SummaryPanel>
+      <SummaryPanel value={value} index={1}>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
+        </div>
+      </SummaryPanel>
+      <SummaryPanel value={value} index={2}>
+        <div>
+          <h3>Topic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, delectus. Expedita dolorum
+            officia at est molestias quod amet dolorem excepturi laborum! Qui alias maiores consequuntur tempore aut
+            aliquam suscipit nemo.</p>
+        </div>
+      </SummaryPanel>
+
     </div>
   );
 }
