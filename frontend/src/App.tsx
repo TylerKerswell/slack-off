@@ -5,12 +5,21 @@ import { ChangeEvent, useState } from 'react';
 
 function FileUploadSingle() {
   const [file, setFile] = useState<File>();
-
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      setShowButton(true);
       setFile(e.target.files[0]);
+      
     }
   };
+  
+  const UploadButton = () => {
+    return (
+      <button onClick={handleUploadClick}>Generate Study Tools</button>
+    )
+  }
+
+  const [showButton, setShowButton] = useState(false);
 
   const handleUploadClick = () => {
     if (!file) {
@@ -33,15 +42,14 @@ function FileUploadSingle() {
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
   };
-
   return (
-    <div>
+    <div className='uploaddiv'>
       <label className='fileupload'>
         <UploadIcon />
         <input type="file" onChange={handleFileChange} />
       </label>
       <div>{file && `${file.name} - ${file.type}`}</div>
-      <button onClick={handleUploadClick}>Upload</button>
+      { showButton ? <UploadButton /> : null }
     </div>
   );
 }
