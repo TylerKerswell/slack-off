@@ -11,31 +11,37 @@ import { RingLoader } from "react-spinners";
 // import { TabPanel } from '@mui/base/TabPanel';
 // import { Tabs } from '@mui/base/Tabs';
 
-const [showLoading, setShowLoading] = useState(false);
 
-const [showButton, setShowButton] = useState(false);
 
 
 function FileUploadSingle() {
+  const [showButton, setShowButton] = useState(false);
+
+  const [showLoading, setShowLoading] = useState(false);
+
   const [file, setFile] = useState<File>();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setShowButton(true);
-      setFile(e.target.files[0]);      
+      setFile(e.target.files[0]);
     }
   };
-  function Loading(){
-    
+  function Loading() {
+
     return (
-        <div className="loading">
-            <RingLoader color='#30CAFB' size='10rem' />
-        </div>
+      <div className="loading">
+        <RingLoader color='#30CAFB' size='10rem' />
+      </div>
     )
-} 
+  }
   const UploadButton = () => {
     return (
-      <button onClick={handleUploadClick}>Generate Study Tools</button>
+      <div>
+        <button onClick={handleUploadClick}>Generate Study Tools</button>
+        {showLoading ? <Loading /> : null}
+      </div>
+
     )
   }
   const handleUploadClick = () => {
@@ -65,8 +71,7 @@ function FileUploadSingle() {
         <input type="file" onChange={handleFileChange} />
       </label>
       <div>{file && `${file.name} - ${file.type}`}</div>
-      { showButton ? <UploadButton /> : null }
-      { showLoading ? <Loading /> : null}
+      {showButton ? <UploadButton /> : null}
     </div>
   );
 }
@@ -77,25 +82,25 @@ function App() {
     <>
       <div id='navbar'><h3 id="name">SLack Off</h3></div>
       <section>
-      <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
-      <div className='containerrim'>
-        <div className='container'>
-          <p>Get your lecture materials summarized and 
-            consolidated, with a personal study plan:</p>
-          <div id='uploadwrapper'>
-            <FileUploadSingle />
-            <span className='uploadphrase'>Upload your lecture materials</span>  
+        <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
+        <div className='containerrim'>
+          <div className='container'>
+            <p>Get your lecture materials summarized and
+              consolidated, with a personal study plan:</p>
+            <div id='uploadwrapper'>
+              <FileUploadSingle />
+              <span className='uploadphrase'>Upload your lecture materials</span>
+            </div>
           </div>
         </div>
-      </div>
       </section>
       <section>
         <div className='loaderwrapper'>
         </div>
       </section>
       <section>
-      <h1 className='pagetitle'>Slides Summary</h1>
-      {/* <div className='tabs'>
+        <h1 className='pagetitle'>Slides Summary</h1>
+        {/* <div className='tabs'>
         <button class="summarytab" onmouseover="openCity(event, 'London')">London</button>
         <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
         <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
