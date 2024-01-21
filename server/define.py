@@ -8,7 +8,6 @@ load_dotenv()
 # Make a call to Open AI API to define key terms in given text summary
 def define(text, key):
 	client = OpenAI(api_key=key)
-	# print(key)
 
 	completion = client.chat.completions.create(
 	  model="gpt-3.5-turbo",
