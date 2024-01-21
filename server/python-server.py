@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory, request
+from flask import Flask, send_from_directory, request, Response
 
 import read
 
@@ -7,7 +7,10 @@ app = Flask(__name__, static_folder='../frontend/dist')
 
 @app.route('/uploadPDF', methods=['POST'])
 def uploadPDF():
-    pdf_file = read.read_pdf(request.data)
+    if request.content_type != 'application/pdf':
+        return Response("not a pdf file", status = 422, mimetype="text/plain")
+    pdfFile = request.data
+
 
 # Serve React App
 @app.route('/', defaults={'path': ''}, methods=["GET"])
