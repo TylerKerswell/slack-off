@@ -17,29 +17,31 @@ function FileUploadSingle() {
       return;
     }
 
-    // 👇 Uploading the file using the fetch API to the server
-    fetch('https://httpbin.org/post', {
+    if (file.type != "application/pdf") {
+      return;
+    }
+
+    fetch('/uploadPDF', {
       method: 'POST',
       body: file,
-      // 👇 Set headers manually for single file upload
       headers: {
         'content-type': file.type,
-        'content-length': `${file.size}`, // 👈 Headers need to be a string
+        'content-length': `${file.size}`
       },
     })
-      .then((res) => res.json())
+      .then((res) => console.log(res))
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-
+      <label className='fileupload'>
+        <UploadIcon />
+        <input type="file" onChange={handleFileChange} />
+      </label>
       <div>{file && `${file.name} - ${file.type}`}</div>
-
       <button onClick={handleUploadClick}>Upload</button>
-      <UploadIcon />
     </div>
   );
 }
@@ -56,7 +58,6 @@ function App() {
         <div className='container'>
           <p>Get your lecture materials summarized, 
             consolidated and recieve a personal study plan</p>
-            
           <div id='uploadwrapper'>
             <FileUploadSingle />
             <span className='uploadphrase'>Upload your lecture materials</span>  
