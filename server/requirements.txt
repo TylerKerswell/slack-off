@@ -3,3 +3,7 @@ PyPDF2
 openai
 flask
 os
+pydub
+json
+speech_recognition
+dotenv
