@@ -2,8 +2,8 @@ import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems
-import speech_recognition as sr
-from pydub import AudioSegment
+# import speech_recognition as sr
+# from pydub import AudioSegment
 import json
 
 DEBUG_MODE = True
@@ -29,20 +29,10 @@ def uploadPDF():
             return Response("error reading file", status=422, mimetype="test/plain")
     elif request.content_type == 'audio/mpeg':
         try:
-            rec = sr.Recognizer()
-            audio = AudioSegment.from_file(io.BytesIO(request.data), format="mp3")
-
-            # Convert AudioSegment to AudioData
-            audio_data = sr.AudioData(audio.raw_data, audio.frame_rate, audio.sample_width)
-
-
-            audio_da = rec.record(audio_data)
-            print("yeehaw")
-            audio = rec.record(audio_da, duration=3600)
-            print("yeboi")
-            lecture_texts = rec.recognize_bing(audio)
+            
+            # rec = sr.Recognizer
+            # lecture_texts = rec.recognize_bing(audio)
             print(lecture_texts)
-            pass
         except Exception as e:
             print(e)
             return Response("error reading audio file", status=421, mimetype="text/plain")

@@ -5,5 +5,5 @@ flask
 os
 pydub
 json
-speech_recognition
-dotenv
+SpeechRecognition
+python-dotenv
