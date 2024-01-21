@@ -1,10 +1,11 @@
-import os, io, read, pymongo
+import os, io, read
 from flask import Flask, send_from_directory, request, Response
+from summarise import summarise
 
 app = Flask(__name__, static_folder='../frontend/dist')
 
 # MONGODB_URI = "mongodb+srv://public:yhj7nZX6EajcWNdZXs4VM2x2z2TUu4Uu2wrRoA31h244EkLnr02k3qe5R39ULZnk@cluster0.mongodb.net/slackoff"
-
+key = os.environ.get("COHERE_API_KEY")
 
 @app.route('/uploadPDF', methods=['POST'])
 def uploadPDF():
@@ -21,8 +22,14 @@ def uploadPDF():
     #     database.files.insert_one({'_id': usr, 'data': binary_data})
     # except:
     #     return Response("cant add file to mongoDB", status=500, mimetype="text/plain")
+
+    try:
+        summary = summarise(lecture_texts, key, "long", "medium")
+    except Exception as e:
+        print(e)
+        return Response("error summarising file", status=500, mimetype="test/plain")
     
-    return Response("good shit", status=202, mimetype="text/plain")
+    return Response(summary, status=202, mimetype="text/plain")
 
 
 # Serve React App
