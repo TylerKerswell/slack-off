@@ -3,6 +3,12 @@ import { UploadIcon } from './Links';
 
 import { ChangeEvent, useState } from 'react';
 
+// import { Tab } from '@mui/base/Tab';
+// import { TabsList } from '@mui/base/TabsList';
+// import { TabPanel } from '@mui/base/TabPanel';
+// import { Tabs } from '@mui/base/Tabs';
+
+
 function FileUploadSingle() {
   const [file, setFile] = useState<File>();
 
@@ -51,8 +57,10 @@ function App() {
 
   return (
     <>
+    
       <div id='navbar'><h3 id="name">SLack Off</h3></div>
       
+      <section>
       <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
       <div className='containerrim'>
         <div className='container'>
@@ -64,6 +72,15 @@ function App() {
           </div>
         </div>
       </div>
+      </section>
+      <section>
+      <h1 className='pagetitle'>Slides Summary</h1>
+      {/* <div className='tabs'>
+        <button class="summarytab" onmouseover="openCity(event, 'London')">London</button>
+        <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
+        <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
+      </div> */}
+      </section>
     </>
   )
 }
