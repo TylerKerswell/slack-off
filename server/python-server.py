@@ -3,7 +3,7 @@ from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems
 import speech_recognition as sr
-from pydub.playback import play
+from pydub import AudioSegment
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")
@@ -24,13 +24,19 @@ def uploadPDF():
     elif request.content_type == 'audio/mpeg':
         try:
             rec = sr.Recognizer()
-            sr.AudioFile(request.data)
-            audio = rec.record(request.data, duration=3600)
+            audio = AudioSegment.from_file(request.data, format="mp3")
+            print("here")
+            wav_data = audio.raw_data
+            print("there")
+            wav_file = AudioSegment(wav_data, frame_rate=audio.frame_rate, sample_width=audio.sample_width, channels=audio.channels)
+            print("everywhere")
+            audio = rec.record(wav_file, duration=3600)
+            print("yeboi")
             lecture_texts = rec.recognize_bing(audio)
             print(lecture_texts)
         except Exception as e:
             print(e)
-            return Response("error reading audio file", status=422, mimetype="text/plain")
+            return Response("error reading audio file", status=421, mimetype="text/plain")
     else:
         return Response("not a pdf file or an audio file", status = 422, mimetype="text/plain")
 
