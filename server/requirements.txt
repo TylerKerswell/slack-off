@@ -1,3 +1,5 @@
 cohere
 PyPDF2
 openai
+flask
+os
