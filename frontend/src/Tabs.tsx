@@ -68,24 +68,10 @@ export function CenteredTabs() {
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-<<<<<<< HEAD
-        <Tabs className='tabs-container' 
-                value={value} 
-                onChange={handleChange} 
-                centered 
-                sx={{
-                    "& button": {borderRadius: 2}
-                    "& button:hover": { backgroundColor: '#004080'}
-                }}>
+        <Tabs className='tabs-container' value={value} onChange={handleChange} centered >
           <Tab label="Summary" {...a11yProps(0)}/>
           <Tab label="Explanation + Resources" />
           <Tab label="Study Plan" />
-=======
-        <Tabs value={value} onChange={handleChange} centered>
-          <Tab className='tab' label="Summary"  {...a11yProps(0)} />
-          <Tab className='tab' label="Explanation + Resources" {...a11yProps(1)}/>
-          <Tab className='tab' label="Study Plan" {...a11yProps(2)}/>
->>>>>>> 48b685b554f533b22d42f49cd9911a7def724506
         </Tabs>
       </Box>
       <SummaryPanel value={value} index={0}>
