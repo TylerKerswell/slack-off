@@ -18,7 +18,7 @@ def define(text, key):
 	  ]
 	)
 
-	return completion.choices[0].message
+	return completion.choices[0].message.content
 
 def generate_problems(text, key):
 	client = OpenAI(api_key=key)
@@ -31,7 +31,7 @@ def generate_problems(text, key):
 	  ]
 	)
 
-	return completion.choices[0].message
+	return completion.choices[0].message.content
 
 
 if __name__ == '__main__':
@@ -45,4 +45,5 @@ Astronomers estimate that a companion object to a visible star is a black hole w
 	key_terms = define(example_summary, os.environ.get("OPENAI_API_KEY"))
 	print(key_terms)
 	problems = generate_problems(example_summary, os.environ.get("OPENAI_API_KEY"))
+	print(problems)
 

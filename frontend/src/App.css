@@ -7,12 +7,16 @@
   --skyblue: #30CAFB;
   --deepblue: #004080;
   --lightblue: #DEF1FF;
+  
 }
 body, html {
   margin-left:4%;
   margin-right:11%;
   margin-bottom:1%;
   margin-top:1%;
+}
+section h1 {
+  font-size: 3rem;
 }
 .pagetitle {
     background-image: linear-gradient(to right,
@@ -24,7 +28,7 @@ body, html {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+  white-space: wrap;
 }
 .containerrim {
   border-radius: 1rem;
@@ -82,8 +86,14 @@ body, html {
   padding:1rem;
   color: var(--deepblue);
   font-weight: 600;
+  font-size: 1rem;
 }
 
 input[type="file"] {
   display: none;
+}
+
+.uploaddiv button {
+  margin-top: 1rem;
+  background-color: var(--deepblue);
 }
