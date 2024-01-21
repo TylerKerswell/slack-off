@@ -12,7 +12,7 @@ def define(text, key):
 	completion = client.chat.completions.create(
 	  model="gpt-3.5-turbo",
 	  messages=[
-	    {"role": "system", "content": "Define key terms in the following lecture slide summary:"},
+	    {"role": "system", "content": "Define key terms in the following lecture slide summary, and teach them to me as if I were a first year univeristy student:"},
 	    {"role": "user", "content": text},
 	  ]
 	)
@@ -25,13 +25,25 @@ def generate_problems(text, key):
 	completion = client.chat.completions.create(
 	  model="gpt-3.5-turbo",
 	  messages=[
-	    {"role": "system", "content": "Generate a list of practice problems from the following lecture slide summary:"},
+	    {"role": "system", "content": """If the the topic of the summary is more Science, Technology, Engineering, or math related, generate a list of exactly 15 practice problem and answer pairs from the following lecture slide summary. Each problem should have its answer right under it.
+	  									Otherwise, if the topic of the summary is more humanities related, generate a list of exactly 8 practice problem and answer pairs from the following lecture slide summary. Each problem should have its answer right under it"""},
 	    {"role": "user", "content": text},
 	  ]
 	)
 
 	return completion.choices[0].message.content.strip()
 
+def generate_study(text, key):
+	client = OpenAI(api_key=key)
+
+	completion = client.chat.completions.create(
+	  model="gpt-3.5-turbo",
+	  messages=[
+	    {"role": "system", "content": "Give a 5 step plan to study for this topic to ace my next exam"},
+	    {"role": "user", "content": text},
+	  ]
+	)
+	return completion.choices[0].message.content.strip()
 
 if __name__ == '__main__':
 	example_summary = """Today's lecture covered the gravitational force and Newton's law of universal gravitation. The force of gravity is determined by the orbit of two objects and is defined by the equation F = G * m1 * m2 / r^2, where G is Newton's constant, m1 and m2 are the masses of the two objects, and r is the distance between them. In addition, the class weighed the Sun using the principle that an object moving in a circle experiences a centripetal force equal to F = m * r, which must equal the gravitational force exerted by the Sun on the Earth. The Sun's mass was then calculated to be 1.99 x 1030 kg.

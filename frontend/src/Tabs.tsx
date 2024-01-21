@@ -10,6 +10,9 @@ interface TabPanelProps {
   value: number;
 }
 
+
+
+
 function SummaryPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   return (
@@ -52,32 +55,6 @@ export function CenteredTabs(props: Json) {
     setValue(newValue);
   };
 
-  //   render: function() {
-
-  //     var styles = {
-  //       default_tab:{
-  //         color: Colors.grey500,
-  //         backgroundColor: Colors.grey50,
-  //         fontWeight: 400,
-  //       },
-  //       active_tab:{
-  //         color: Colors.deepOrange700,
-  //       }
-  //     }
-
-  //     styles.tab = []
-  //     styles.tab[0] = styles.default_tab;
-  //     styles.tab[1] = styles.default_tab;
-  //     styles.tab[2] = styles.default_tab;
-  //     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
-  //   }  
-  // const jsonToText = (list:any) => {
-  //   let text = '';
-  //   for (let i = 0; i<list.length; i++) {
-
-  //   }
-  //   return text;
-  // }
 
   const ListOfBulletpoints = Object.values(props.summary).map((d: any, index) => <span key={index} className="sumtext">{d}</span>)
   const ListOfDefs = Object.values(props.def).map((d: any, index) => <div className="deftext" key={index}><span>{d}</span></div>)
@@ -117,6 +94,7 @@ export function CenteredTabs(props: Json) {
           <div id="probwrapper">
             <h3>Study Plan + Resources</h3>
             <>{ListOfStudy}</>
+            <h3>Practice Problems</h3>
             <>{ListOfProblems}</>
           </div>
         </div>

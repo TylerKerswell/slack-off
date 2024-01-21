@@ -2,8 +2,6 @@ cohere
 PyPDF2
 openai
 flask
-os
 pydub
-json
 SpeechRecognition
 python-dotenv
