@@ -2,8 +2,7 @@ import os, io, read
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems, generate_study
-# import speech_recognition as sr
-# from pydub import AudioSegment
+import speech_recognition as sr
 import json
 
 DEBUG_MODE = False
@@ -29,9 +28,12 @@ def uploadPDF():
             return Response("error reading file", status=422, mimetype="test/plain")
     elif request.content_type == 'audio/mpeg':
         try:
-            
-            # rec = sr.Recognizer
-            # lecture_texts = rec.recognize_bing(audio)
+            bytesf = io.BytesIO(request.data)
+            audio = sr.AudioFile(bytesf)
+            rec = sr.Recognizer()
+            with audio as source:
+                audiodata = rec.record(audio)
+            lecture_texts = rec.recognize_whisper(audio_data=audiodata, language='english')
             print(lecture_texts)
         except Exception as e:
             print(e)
@@ -39,7 +41,8 @@ def uploadPDF():
     else:
         return Response("not a pdf file or an audio file", status = 422, mimetype="text/plain")
 
-    
+
+    print("\n\nsummarising the text...\n\n")
     try:
         summary = summarise(lecture_texts, coherekey)
     except Exception as e:
@@ -47,6 +50,7 @@ def uploadPDF():
         return Response("error summarising file", status=500, mimetype="test/plain")
     
     # take the summary and create definitions and practice problems from them
+    print("generating content...\n\n")
     try:
         definitions = define(summary, openkey)
         problems = generate_problems(summary,openkey)
