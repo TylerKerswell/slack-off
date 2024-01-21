@@ -1,5 +1,8 @@
 import './App.css'
 import { UploadIcon } from './Links';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faForward } from "@fortawesome/free-solid-svg-icons";
+
 
 import { ChangeEvent, useState } from 'react';
 // import { Loading } from './Loading';
@@ -80,7 +83,11 @@ function App() {
 
   return (
     <>
-      <div id='navbar'><h3 id="name">SLack Off</h3></div>
+
+      <div id='navbar'>
+        <FontAwesomeIcon icon={faForward} />
+        <h3 id="name">SLack Off</h3>
+      </div>
       <section>
         <h1 className='pagetitle'>Your Ultimate Study Companion</h1>
         <div className='containerrim'>
@@ -107,7 +114,7 @@ function App() {
       </div> */}
       </section>
       <section>
-        <div className='loaderwrapper'>
+        <div className='tabwrapper'>
           <CenteredTabs />
         </div>
       </section>
