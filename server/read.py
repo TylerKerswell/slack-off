@@ -15,5 +15,6 @@ def read_pdf(file):
 
 if __name__ == '__main__':
 	extracted_text = read_pdf('test.pdf')
-	print(extracted_text[0])
+	for page in extracted_text:
+		print(page)
 

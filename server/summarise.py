@@ -26,6 +26,7 @@ def summarize(file, client, length, extractiveness):
 
     return summary
 
+
 if __name__ == '__main__':
     co = cohere.Client("Z1nYWzLHwbXCdJq8beeI3ixP0rKCNN2bG93bM7B4")
     print(summarize('test.pdf', co, "long", "medium"))
