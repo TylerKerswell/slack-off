@@ -70,7 +70,14 @@ export function CenteredTabs(props: Json) {
 //     styles.tab[2] = styles.default_tab;
 //     styles.tab[this.state.slideIndex] = objectAssign({},   styles.tab[this.state.slideIndex], styles.active_tab);
 //   }  
-
+  // const jsonToText = (list:any) => {
+  //   let text = '';
+  //   for (let i = 0; i<list.length; i++) {
+      
+  //   }
+  //   return text;
+  // }
+  const ListOfBulletpoints =  props.summary.map((d:any) => <div><span>{d}</span></div>)
   return (
     <div className='tabs'>
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -83,19 +90,19 @@ export function CenteredTabs(props: Json) {
       <SummaryPanel value={value} index={0}>
         <div>
           <h3>Summary</h3>
-          <p>{props.summary}</p>
+          <div>{ListOfBulletpoints}</div>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={1}>
         <div>
           <h3>Explanation + Resources</h3>
-          <p>{props.def}</p>
+          <div>{ListOfBulletpoints}</div>
         </div>
       </SummaryPanel>
       <SummaryPanel value={value} index={2}>
         <div>
           <h3>Study Plan</h3>
-          <p>{props.problems}</p>
+          <div>{ListOfBulletpoints}</div>
         </div>
       </SummaryPanel>
 
