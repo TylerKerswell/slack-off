@@ -108,3 +108,7 @@ input[type="file"] {
 .loaderwrapper .loading {
   padding: 2rem;
 }
+
+.summarycontainer {
+  color: var(--lightgrey);
+}

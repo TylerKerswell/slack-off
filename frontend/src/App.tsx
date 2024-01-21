@@ -111,16 +111,15 @@ function App() {
       </section>
       <section>
         <h1 className='pagetitle'>Slides Summary</h1>
-        {/* <div className='tabs'>
-        <button class="summarytab" onmouseover="openCity(event, 'London')">London</button>
-        <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
-        <button class="explanationtab" onmouseover="openCity(event, 'London')">London</button>
-      </div> */}
-      </section>
-      <section>
         <div className='tabwrapper'>
           <CenteredTabs />
         </div>
+        <div className='container'>
+          <h2>Slides Summary</h2>
+        </div>
+      </section>
+      <section>
+        
       </section>
 
     </>
