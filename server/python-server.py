@@ -4,6 +4,9 @@ from summarise import summarise
 from define import define, generate_problems
 import speech_recognition as sr
 from pydub import AudioSegment
+import json
+
+DEBUG_MODE = True
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")
@@ -12,6 +15,9 @@ openkey = os.environ.get("OPENAI_API_KEY")
 @app.route('/uploadFile', methods=['POST'])
 def uploadPDF():
     print("\n\n\ncall to uploadFile\n\n\n")
+
+    if DEBUG_MODE:
+        return json.load(open("debuginfo.json"))
 
     # parse the pdf or audio file and get the text from in
     if request.content_type == 'application/pdf':
@@ -68,16 +74,19 @@ def uploadPDF():
     prob_dict = {}
     i = 0
     for point in summary_list:
-        summary_dict[i] = point
-        i += 1
+        if not point.isspace():
+            summary_dict[i] = point
+            i += 1
     i = 0
     for defi in def_list:
-        def_dict[i] = defi
-        i += 1
+        if not defi.isspace():
+            def_dict[i] = defi
+            i += 1
     i = 0
     for prob in prob_list:
-        prob_dict[i] = prob
-        i += 1
+        if not prob.isspace():
+            prob_dict[i] = prob
+            i += 1
     
     multi_dic = {}
 
