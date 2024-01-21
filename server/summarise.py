@@ -1,15 +1,18 @@
 import cohere
+import os
 from read import read_pdf
 
-def summarize(file, client, length, extractiveness):
-    pages = read_pdf(file)
+# Produces a summary of the given text using provided API key and summarization parameters
+def summarise(text, key, length, extractiveness):
 
-    # Divide the pages into separate lists
-    section_length = len(pages) // 4
-    page_sections = [pages[i:i + section_length] for i in range(0, len(pages), section_length)]
+    client = cohere.Client(key)
+
+    # Divide the text into separate lists
+    section_length = len(text) // 4
+    text_sections = [text[i:i + section_length] for i in range(0, len(text), section_length)]
     summary_list = []
-    print(len(page_sections))
-    for section in page_sections:
+    print(len(text_sections))
+    for section in text_sections:
         # Join each list into a string
         section = "".join(section)
         # Summarize each string
@@ -28,5 +31,5 @@ def summarize(file, client, length, extractiveness):
 
 
 if __name__ == '__main__':
-    co = cohere.Client("Z1nYWzLHwbXCdJq8beeI3ixP0rKCNN2bG93bM7B4")
-    print(summarize('test.pdf', co, "long", "medium"))
+    api_key = os.environ.get("COHERE_API_KEY")
+    print(summarise(read_pdf('test.pdf'), api_key, "long", "medium"))

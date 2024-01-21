@@ -1,2 +1,3 @@
 cohere
 PyPDF2
+openai
