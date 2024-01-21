@@ -4,6 +4,6 @@ import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 export function UploadIcon(){
     
     return (
-        <FontAwesomeIcon icon={faFileArrowUp} />
+        <FontAwesomeIcon className='icon' icon={faFileArrowUp} />
     )
 } 

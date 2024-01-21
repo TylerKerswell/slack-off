@@ -3,16 +3,18 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: dark;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --babyblue: #004080;
-  --deepblue: #30CAFB;
+  --lightgrey: #FAFAFA;
+  --skyblue: #30CAFB;
+  --deepblue: #004080;
+  --lightblue: #DEF1FF;
 }
 body {
   height: 100%;
