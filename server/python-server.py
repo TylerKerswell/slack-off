@@ -37,7 +37,7 @@ def uploadPDF():
                 rec = sr.Recognizer()
                 with audio as source:
                     audiodata = rec.record(audio)
-                lecture_texts = rec.recognize_sphinx(audio_data=audiodata)
+                lecture_texts = rec.recognize_whisper(audio_data=audiodata, language='english')
                 print(lecture_texts)
         except Exception as e:
             print(e)
