@@ -3,4 +3,3 @@ PyPDF2
 openai
 flask
 os
-python-dotenv
