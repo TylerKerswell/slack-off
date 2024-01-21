@@ -53,7 +53,7 @@ export default function FileUploadSingle() {
             return;
         }
         setShowLoading(true);
-        fetch('/uploadPDF', {
+        fetch('/uploadFile', {
             method: 'POST',
             body: file,
             headers: {
