@@ -98,7 +98,8 @@ function App() {
     <>
 
       <div id='navbar'>
-        <FontAwesomeIcon icon={faForward} />
+        <div><FontAwesomeIcon icon={faForward} color='#004080' /></div>
+        <h2 id="space">..</h2>
         <h3 id="name">SLack Off</h3>
       </div>
       <section>
