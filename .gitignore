@@ -1,6 +1,7 @@
 /server/__pycache__
 /server/.env
-server\.venv
+server/.venv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
