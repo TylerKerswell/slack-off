@@ -5,7 +5,7 @@ from define import define, generate_problems, generate_study
 import speech_recognition as sr
 import json
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")

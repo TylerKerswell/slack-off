@@ -8,9 +8,7 @@
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"api/python-server.py"
+            "dest":"server/python-server.py"
         }
-        
-
     ]
 }
