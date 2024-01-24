@@ -191,3 +191,4 @@ node_modules
 # other
 ../server/.env
 ../server/__pycache__
+.vercel
