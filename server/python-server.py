@@ -6,9 +6,9 @@ from define import define, generate_problems, generate_study
 import speech_recognition as sr
 import json
 
-DEBUG_MODE = False
-if os.environ.get('ENV') == 'production':
-    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+DEBUG_MODE = True
+# if os.environ.get('ENV') == 'production':
+#     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")
