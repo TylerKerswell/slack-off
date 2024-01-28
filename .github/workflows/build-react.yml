@@ -9,17 +9,19 @@ jobs:
     steps: 
     - name: Checkout repository
       uses: actions/checkout@v4
-
+      
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '20.9'
-    
+      
     - name: Install dependencies
       run: npm install
+      working-directory: ./frontend
 
     - name: Compile build
       run: npm run build # This can be whatever command you use to build your package
+      working-directory: ./frontend
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
