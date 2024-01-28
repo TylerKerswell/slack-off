@@ -1,0 +1,60 @@
+#pagewrapper {
+    height: 80vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem;
+    margin: 0rem;
+    margin-bottom: 20vh;
+    --lightgrey: #efefef;
+    --skyblue: #30CAFB;
+    --deepblue: #004080;
+    --lightblue: #DEF1FF;
+}
+
+.italics {
+    font-size: 2rem;
+    background-image: linear-gradient(to right,
+    var(--deepblue),
+    var(--skyblue),
+    var(--lightblue));
+    animation: background-pan 3s linear infinite;
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: wrap;
+}
+
+.title {
+    h1 {
+        font-size: 6rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    color: var(--deepblue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+
+.title .icon {
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.title .icon .iconimg {
+    height: 5rem;
+}
+.desc {
+    font-size: 2.2rem;
+    color: var(--deepblue);
+    font-weight: 450;
+}
