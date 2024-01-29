@@ -1,8 +1,11 @@
+![image](https://github.com/Andrewyx/slack-off/assets/72371419/21fe200c-0c8d-498d-8c0a-1fbdb612a388)
+
 # SLack Off
 nwHacks 2024 UBC, Dream Team Submission!
 See the project at https://www.slackoff.tech/
 
 Devpost: https://devpost.com/software/slack-off?ref_content=user-portfolio&ref_feature=in_progress
+
 ## Inspiration
 Can't pay attention to class? Wish there was an easier way to catch up? We've all been there. As students, we understand how difficult it is to grasp content, take notes, or even stay focused in long lectures. You zone out for 2 minutes and you miss a whole unit. 
 
