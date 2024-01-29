@@ -1,4 +1,5 @@
-import os, io, read
+import os, io, sys
+from read import read_pdf
 from flask import Flask, send_from_directory, request, Response
 from summarise import summarise
 from define import define, generate_problems, generate_study
@@ -6,6 +7,9 @@ import speech_recognition as sr
 import json
 
 DEBUG_MODE = False
+if os.environ.get('ENV') == 'production':
+    print("in prod env")
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 app = Flask(__name__, static_folder='../frontend/dist')
 coherekey = os.environ.get("COHERE_API_KEY")
@@ -22,7 +26,7 @@ def uploadPDF():
     if request.content_type == 'application/pdf':
         try:
             pdf_stream = io.BytesIO(request.data)
-            lecture_texts = read.read_pdf(pdf_stream)
+            lecture_texts = read_pdf(pdf_stream)
         except Exception as e:
             print(e)
             return Response("error reading file", status=422, mimetype="test/plain")

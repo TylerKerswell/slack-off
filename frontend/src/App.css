@@ -1,28 +1,37 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  padding-bottom: 5rem;
   text-align: center;
   --lightgrey: #efefef;
   --skyblue: #30CAFB;
   --deepblue: #004080;
   --lightblue: #DEF1FF;
-  
 }
-body, html {
-  margin-left:4%;
-  margin-right:11%;
-  margin-bottom:1%;
-  margin-top:1%;
+
+body,
+html {
+  scroll-behavior: smooth;
+  background-image: linear-gradient(to bottom,
+      #FFFFFF,
+      #FFFFFF,
+      #def1ff,
+      #def1ff,
+      #FFFFFF,
+      #FFFFFF);
+  background-size: cover;
+  min-height: 100%;
 }
+
 section h1 {
   font-size: 3rem;
 }
+
 .pagetitle {
-    background-image: linear-gradient(to right,
-    var(--skyblue),    
-    var(--deepblue),
-    var(--lightblue));
+  background-image: linear-gradient(to right,
+      var(--skyblue),
+      var(--deepblue),
+      var(--lightblue));
   animation: background-pan 3s linear infinite;
   background-size: 200%;
   -webkit-background-clip: text;
@@ -30,13 +39,16 @@ section h1 {
   -webkit-text-fill-color: transparent;
   white-space: wrap;
 }
+
 .containerrim {
   border-radius: 1rem;
   background-image: linear-gradient(to right,
-    var(--skyblue),    
-    var(--deepblue));
+      var(--skyblue),
+      var(--deepblue));
   padding: 0.2rem;
-  margin: 0rem;
+  margin: 1em;
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
 
 .containerrim .container {
@@ -56,20 +68,19 @@ section h1 {
 }
 
 #name {
-  color:var(--deepblue);
+  color: var(--deepblue);
   margin: 0rem;
 
-}
-
-#space {
-  color:white;
-  margin: 0rem;
 }
 
 #navbar {
+  font-size: 1.2rem;
   display: flex;
-  align-items: start;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
   margin: auto;
+
 }
 
 .icon {
@@ -85,7 +96,7 @@ section h1 {
 
 #uploadwrapper {
   padding: 3rem;
-  
+
   margin-left: 4rem;
   margin-right: 4rem;
   display: flex;
@@ -95,7 +106,7 @@ section h1 {
 }
 
 #uploadwrapper span {
-  padding:1rem;
+  padding: 1rem;
   color: var(--deepblue);
   font-weight: 600;
   font-size: 1rem;
@@ -192,7 +203,7 @@ input[type="file"] {
   padding: 2rem;
   margin: 0rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   line-height: 1.3rem;
   align-items: start;
   background-color: rgb(231, 231, 231);
@@ -203,7 +214,7 @@ input[type="file"] {
   padding: 2rem;
   margin: 0rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   line-height: 1.3rem;
   align-items: start;
   background-color: rgb(231, 231, 231);
@@ -221,7 +232,7 @@ input[type="file"] {
   padding: 2rem;
   margin: 0rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   line-height: 1.3rem;
   align-items: start;
   background-color: rgb(231, 231, 231);
@@ -239,6 +250,7 @@ input[type="file"] {
   padding: 0rem;
   margin: 0rem;
 }
+
 .tabs h3 {
   font-size: 2rem;
   margin: 1rem;
@@ -248,8 +260,38 @@ input[type="file"] {
 .tabsrim {
   border-radius: 2rem;
   background-image: linear-gradient(to right,
-    var(--skyblue),    
-    var(--deepblue));
+      var(--skyblue),
+      var(--deepblue));
   padding: 0.2rem;
   margin: 0rem;
+}
+
+.studtext {
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: start;
+  text-align: left;
+}
+
+.navbutton {
+  background-color: var(--deepblue);
+
+  font-size: 1.2rem;
+  margin-right: 2rem;
+  line-height: normal;
+  border-radius: 2rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.navicon {
+  padding-right: 0.5rem;
+  height: 1.5rem;
+}
+
+#logocontainer {
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
 }
